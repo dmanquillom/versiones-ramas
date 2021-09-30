@@ -70,6 +70,14 @@ git log --oneline --all --graph
 
 
 
+***** Ignorar Archivos *****
+//Crear un archivo .gitignore y colocar los nombres de los archivos, luego agregar .gitignore al repositorio
+git add .gitignore
+
+
+
+
+
 ***** Comandos Github ***** 
 //Fijar usuario y email github
 git config --global user.name dmanquillom
