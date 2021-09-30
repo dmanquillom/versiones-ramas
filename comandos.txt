@@ -1,0 +1,112 @@
+***** Comando Git *****
+//Ayuda
+git help
+git help status
+
+//Ver el estado y el log
+git status
+git log
+
+//Crear un repositorio - agregar archivos (version.txt) al staging area - enviar cambios
+git init
+git add version.txt
+git commit -m "primer commit"
+
+//Restaurar un archivo del staging area
+git restore version.txt
+
+//Crear ver y borrar una rama
+git branch newbranch
+git branch
+git branch -D newbranch
+
+//Ver las versiones de los commit
+git log --oneline
+
+//6cbc3c5 (HEAD -> master, origin/master, origin/HEAD) tercer commit
+//c3fc74e segundo commit
+//c47fac5 primer commit
+
+//Mover el head a un commit anterior 'detached HEAD' y luego volver al último
+git checkout c47fac5
+git checkout master
+
+//Recuperar una version anterior del repositorio o de un archivo en una rama alternativa
+git checkout -b newbranch c47fac5
+git checkout -b newbranch c47fac5 version.txt
+
+//Recuperar una version anterior del repositorio o de un archivo en la misma rama (sin el --hard lo recupera hasta el staging area).
+git reset --hard 5bb38a2
+git reset --hard 5bb38a2 version.txt
+
+//Dejar la misma versión del repositorio actual pero eliminando historial de commits (no modifica los archivos)
+git reset --soft 5bb38a2
+git reset --soft 5bb38a2 version.txt
+
+//Cambiarse de rama (a la master) y fusionarla con la rama newbranch (fast-forward = archivos diferentes o líneas de código diferentes)
+git checkout master
+git merge newbranch
+
+//Si se forma conflicto se resuelve manualmente (manual merge o se aborta)
+//<<<<<<< HEAD
+//open an issue
+//=======
+//ask your question in IRC.
+//>>>>>>> newbranch
+git add archivos conflicto
+git commit -m "primer commit"
+
+//Abortar un merge si se forma conflicto
+git merge --abort
+
+//Reemplazar el archivo version.txt por el de la rama newbranch
+git checkout newbranch version.txt
+
+//Ver las versiones de los commit de forma gráfica y la de todas las ramas
+git log --oneline --graph
+git log --oneline --all --graph
+
+
+
+
+
+***** Comandos Github ***** 
+//Fijar usuario y email github
+git config --global user.name dmanquillom
+git config --global user.email dmanquillom@unal.edu.co
+
+//Clonar el repositorio - crea la carpeta versiones-ramas
+git clone https://github.com/dmanquillom/versiones-ramas.git
+
+//Asignar un repositorio github, ver el repositorio remoto asignado y desasignar un repositorio
+git remote add origin https://github.com/dmanquillom/versiones-ramas.git
+git remote -v
+git remote remove origin
+
+//Subir un repositorio a github a la rama master
+git push origin master
+
+//Actualizar el repositorio
+git fetch origin
+git merge origin/master
+//Pull agrupa los anteriores dos comandos:
+git pull origin master
+
+
+
+
+
+****** Agregar un tag *****
+git tag -a v1.0 -m "Version 1"
+git push origin v1.0
+git push origin --tags
+
+
+
+
+
+***** git-hub - pages *****
+//Crear una rama llamada gh-pages y que exista un index.html en el repositorio
+git checkout -b gh-pages
+git push origin gh-pages
+https://dmanquillom.github.io/versiones-ramas
